@@ -4,15 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start-dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prestart": "ng build --prod && ngc",
+    "start": "ts-node src/server.ts"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.2.4",
+    "@angular/animations": "^4.3.4",
     "@angular/common": "^4.2.4",
     "@angular/compiler": "^4.2.4",
     "@angular/core": "^4.2.4",
@@ -20,6 +22,7 @@
     "@angular/http": "^4.2.4",
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
+    "@angular/platform-server": "^4.3.4",
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
