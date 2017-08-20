@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import 'rxjs/add/operator/do';
+
+import { TodoService } from '../todo/todo.service';
+import { Todo } from '../todo/models/todo.model';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +12,7 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(meta: Meta, title: Title) {
+  constructor(private todoService: TodoService, meta: Meta, title: Title) {
     title.setTitle('My Spiffy Home Page');
 
     meta.addTags([
@@ -19,6 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.todoService.getTodoList().subscribe((data: Todo[])  => console.log(data));
   }
 
 }
