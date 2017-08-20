@@ -29,9 +29,13 @@ app.get('*.*', express.static(join(__dirname, '..', 'dist')));
 
 app.get('/api', (req, res) => {
   readFile(join(__dirname, 'mocked-data.json'), (error, data) => {
+    if (error) {
+      console.log(error);
+    }
+
     const json = JSON.parse(data.toString());
-    console.log('error', error);
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.send(json);
   });
 
