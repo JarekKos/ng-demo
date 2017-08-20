@@ -4,7 +4,7 @@ import { platformServer, renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.module.ngfactory';
 import * as express from 'express';
-import { readFileSync } from 'fs';
+import { readFileSync, readFile } from 'fs';
 import { join } from 'path';
 
 const PORT = 4000;
@@ -26,6 +26,16 @@ app.set('view engine', 'html');
 app.set('views', 'src');
 
 app.get('*.*', express.static(join(__dirname, '..', 'dist')));
+
+app.get('/api', (req, res) => {
+  readFile(join(__dirname, 'mocked-data.json'), (error, data) => {
+    const json = JSON.parse(data.toString());
+    console.log('error', error);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(json);
+  });
+
+});
 
 app.get('*', (req, res) => {
   res.render('index', { req });
