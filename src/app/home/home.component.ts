@@ -12,6 +12,8 @@ import { Todo } from '../todo/models/todo.model';
 })
 export class HomeComponent implements OnInit {
 
+  todos: Todo[] = [];
+
   constructor(private todoService: TodoService, meta: Meta, title: Title) {
     title.setTitle('My Spiffy Home Page');
 
@@ -23,7 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.todoService.getTodoList().subscribe((data: Todo[])  => console.log(data));
+    this.todoService.getTodoList().subscribe((data: Todo[])  => this.todos = data);
   }
 
 }
