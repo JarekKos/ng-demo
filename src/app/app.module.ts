@@ -8,12 +8,20 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 
 import { TodoService } from './todo/todo.service';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { PersonalDataComponent } from './reactive-form/personal-data/personal-data.component';
+import { CompanyDataComponent } from './reactive-form/company-data/company-data.component';
+import { StepDirective } from './step.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    ReactiveFormComponent,
+    PersonalDataComponent,
+    StepDirective,
+    CompanyDataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-demo-pre'}),
@@ -21,6 +29,7 @@ import { TodoService } from './todo/todo.service';
     HttpModule,
   ],
   providers: [TodoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PersonalDataComponent, CompanyDataComponent],
 })
 export class AppModule { }
