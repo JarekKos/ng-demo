@@ -11,12 +11,13 @@ import { CompanyDataComponent } from './company-data/company-data.component';
 })
 export class ReactiveFormComponent implements OnInit, AfterViewInit {
 
-  steps: Array<{label, component}> = [
-    {label: 'Step 1', component: PersonalDataComponent},
-    {label: 'Step 2', component: CompanyDataComponent}
+  steps: Array<{step, label, component}> = [
+    {step: 1, label: 'Step 1', component: PersonalDataComponent},
+    {step: 2, label: 'Step 2', component: CompanyDataComponent}
   ];
-  activeTab: {label, component};
+  activeTab: {step, label, component};
   stepsContainer: ViewContainerRef = null;
+  cmp: Component = null;
 
   // get element of StepDirective
   @ViewChild(StepDirective) stepHost: StepDirective;
@@ -39,14 +40,16 @@ export class ReactiveFormComponent implements OnInit, AfterViewInit {
   }
 
   setActive(index: number) {
-    this.stepsContainer.clear();
+    if (this.cmp === null || this.activeTab.step > this.steps[index].step || this.cmp['form'].valid) {
+      this.stepsContainer.clear();
 
-    this.activeTab = this.steps[index];
-    const displayedStep = this.componentFactoryResolver.resolveComponentFactory(this.activeTab.component);
+      this.activeTab = this.steps[index];
+      const displayedStep = this.componentFactoryResolver.resolveComponentFactory(this.activeTab.component);
 
-    const ref = this.stepsContainer.createComponent(displayedStep);
-    const cmp = ref.instance;
+      const ref = this.stepsContainer.createComponent(displayedStep);
+      this.cmp = ref.instance;
 
-    cmp['onClickButton'].subscribe(slideNumber => this.setActive(slideNumber));
+      this.cmp['onClickButton'].subscribe(slideNumber => this.setActive(slideNumber));
+    }
   }
 }

@@ -2,13 +2,14 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
 
 import { phoneValidator } from '../../customValidators/phoneValidator';
+import { StepInterface } from '../interfaces/StepInterface';
 
 @Component({
   selector: 'app-personal-data',
   templateUrl: './personal-data.component.html',
   styleUrls: ['./personal-data.component.css']
 })
-export class PersonalDataComponent implements OnInit {
+export class PersonalDataComponent implements OnInit, StepInterface {
 
   form: FormGroup;
   @Output() onClickButton = new EventEmitter<number>();
