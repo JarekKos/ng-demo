@@ -28,8 +28,10 @@ export class ReactiveFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.stepsContainer = this.stepHost.container;
-    this.setActive(0);
+    setTimeout(() => {
+      this.stepsContainer = this.stepHost.container;
+      this.setActive(0);
+    });
   }
 
   isActive(index) {
