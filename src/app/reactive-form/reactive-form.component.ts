@@ -38,17 +38,15 @@ export class ReactiveFormComponent implements OnInit, AfterViewInit {
     return this.activeTab === this.steps[index];
   }
 
-  setActive(index) {
+  setActive(index: number) {
     this.stepsContainer.clear();
 
     this.activeTab = this.steps[index];
     const displayedStep = this.componentFactoryResolver.resolveComponentFactory(this.activeTab.component);
 
-    this.stepsContainer.createComponent(displayedStep);
-  }
+    const ref = this.stepsContainer.createComponent(displayedStep);
+    const cmp = ref.instance;
 
-  get activeComponent() {
-    return 'kkk';
+    cmp['onClickButton'].subscribe(slideNumber => this.setActive(slideNumber));
   }
-
 }
