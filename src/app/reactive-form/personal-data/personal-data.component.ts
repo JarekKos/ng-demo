@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
+
+import { phoneValidator } from '../../customValidators/phoneValidator';
 
 @Component({
   selector: 'app-personal-data',
@@ -9,6 +11,7 @@ import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angul
 export class PersonalDataComponent implements OnInit {
 
   form: FormGroup;
+  @Output() onClickButton = new EventEmitter<number>();
 
   constructor(private fb: FormBuilder) { }
 
@@ -25,16 +28,48 @@ export class PersonalDataComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.form.value);
-    console.log(this.form.valid);
-  }
-
   setPhoneNumbers(phoneNumbers: String[] = []) {
-    const phoneNumbersFCs = phoneNumbers.map(phoneNumber => this.fb.control(phoneNumber, [Validators.required]));
+    const phoneNumbersFCs = phoneNumbers.map(phoneNumber =>
+      this.fb.control(
+        phoneNumber,
+        [
+          Validators.required,
+          phoneValidator()
+        ]
+      )
+    );
     const phoneNumberFormArray = this.fb.array(phoneNumbersFCs);
 
     this.form.setControl('phoneNumbers', phoneNumberFormArray);
+  }
+
+  addPhoneNumber() {
+    this.phoneNumbers.push(
+      this.fb.control(
+        '',
+        [
+          Validators.required,
+          phoneValidator(),
+        ]
+      )
+    );
+  }
+
+  removePhoneNumber() {
+    this.phoneNumbers.removeAt(this.phoneNumbers.length - 1);
+  }
+
+  onNext() {
+    this.onClickButton.next(1);
+  }
+
+  resetForm() {
+    this.form.reset();
+  }
+
+  isValidPhoneNumber(index) {
+    return this.phoneNumbers.controls[index].touched
+      && this.phoneNumbers.controls[index].invalid;
   }
 
   get phoneNumbers(): FormArray {
@@ -45,12 +80,8 @@ export class PersonalDataComponent implements OnInit {
     return this.form.get('name');
   }
 
-  addPhoneNumber() {
-    this.phoneNumbers.push(this.fb.control(''));
-  }
-
-  removePhoneNumber() {
-    this.phoneNumbers.removeAt(this.phoneNumbers.length - 1);
+  get surname() {
+    return this.form.get('surname');
   }
 
 }

@@ -1,19 +1,31 @@
 <h2>Personal data</h2>
-<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="form" novalidate (ngSubmit)="onNext()">
   <div class="form-group">
     <label class="center-block">Name:
-      <input class="form-control" [ngClass]="{ 'alert': name.invalid && name.touched, 'alert-danger': name.invalid && name.touched }" formControlName="name">
+      <input
+        class="form-control"
+        [ngClass]="{ 'alert': name.invalid && name.touched, 'alert-danger': name.invalid && name.touched }"
+        formControlName="name"
+      >
     </label>
   </div>
   <div class="form-group">
     <label class="center-block">Surname:
-      <input class="form-control" formControlName="surname">
+      <input
+        class="form-control"
+        [ngClass]="{ 'alert': surname.invalid && surname.touched, 'alert-danger': surname.invalid && surname.touched }"
+        formControlName="surname"
+      >
     </label>
   </div>
   <div formArrayName="phoneNumbers" class="form-group">
     <div *ngFor="let address of phoneNumbers.controls; let i=index" [formGroupName]="i" >
       <label class="center-block">Phone number ({{i}}):
-          <input class="form-control" [ngClass]="{ 'alert': name.invalid && name.touched, 'alert-danger': name.invalid && name.touched }" [formControl]="address">
+          <input
+            class="form-control"
+            [ngClass]="{ 'alert': isValidPhoneNumber(i), 'alert-danger': isValidPhoneNumber(i) }"
+            [formControl]="address"
+          >
       </label>
     </div>
     <div class="pull-right">
@@ -23,7 +35,20 @@
   </div>
   <div></div>
   <div style="clear: both">
-    <button type="submit" class="btn btn-success">Save</button>
+    <button
+      class="btn btn-success"
+      [disabled]="form.invalid"
+    >
+      NEXT
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="form.pristine"
+      (click)="resetForm()"
+    >
+      RESET
+    </button>
   </div>
 </form>
 
