@@ -3,11 +3,13 @@ import {AfterViewInit, Component, ComponentFactoryResolver, OnInit, ViewChild, V
 import { StepDirective } from '../step.directive';
 import { PersonalDataComponent } from './personal-data/personal-data.component';
 import { CompanyDataComponent } from './company-data/company-data.component';
+import { UserService } from './services/UserService';
 
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
-  styleUrls: ['./reactive-form.component.css']
+  styleUrls: ['./reactive-form.component.css'],
+  providers: [UserService]
 })
 export class ReactiveFormComponent implements OnInit, AfterViewInit {
 

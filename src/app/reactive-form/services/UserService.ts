@@ -1,4 +1,4 @@
-import { UserModel } from "../models/user.model";
+import { UserModel } from '../models/user.model';
 
 export class UserService {
   private user: UserModel = null;
@@ -8,6 +8,6 @@ export class UserService {
   }
 
   updateUser(dataObj) {
-    return Object.assign({}, this.user, dataObj);
+    this.user = Object.assign({}, this.user, dataObj);
   }
 }

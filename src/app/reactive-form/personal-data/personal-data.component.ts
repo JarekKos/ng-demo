@@ -1,8 +1,9 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormArray, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl} from '@angular/forms';
 
 import { phoneValidator } from '../../customValidators/phoneValidator';
 import { StepInterface } from '../interfaces/StepInterface';
+import { UserService } from '../services/UserService';
 
 @Component({
   selector: 'app-personal-data',
@@ -14,7 +15,7 @@ export class PersonalDataComponent implements OnInit, StepInterface {
   form: FormGroup;
   @Output() onClickButton = new EventEmitter<number>();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.createForm();
@@ -61,6 +62,12 @@ export class PersonalDataComponent implements OnInit, StepInterface {
   }
 
   onNext() {
+    this.userService.updateUser({
+      name: this.name.value,
+      surname: this.surname.value,
+      phoneNumber: this.phoneNumbers.value,
+    });
+
     this.onClickButton.next(1);
   }
 
@@ -77,11 +84,11 @@ export class PersonalDataComponent implements OnInit, StepInterface {
     return this.form.get('phoneNumbers') as FormArray;
   }
 
-  get name() {
+  get name(): AbstractControl {
     return this.form.get('name');
   }
 
-  get surname() {
+  get surname(): AbstractControl {
     return this.form.get('surname');
   }
 

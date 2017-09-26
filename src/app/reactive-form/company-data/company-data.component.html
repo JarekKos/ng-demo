@@ -1,3 +1,53 @@
-<p>
-  company-data works!
-</p>
+<h2>Personal data</h2>
+<form [formGroup]="form" novalidate (ngSubmit)="onNext()">
+  <div class="form-group">
+    <label class="center-block">Company name:
+      <input
+        class="form-control"
+        [ngClass]="{ 'alert': companyName.invalid && companyName.touched, 'alert-danger': companyName.invalid && companyName.touched }"
+        formControlName="companyName"
+      >
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="center-block">Company email:
+      <input
+        class="form-control"
+        [ngClass]="{ 'alert': companyEmail.invalid && companyEmail.touched, 'alert-danger': companyEmail.invalid && companyEmail.touched }"
+        formControlName="companyEmail"
+      >
+    </label>
+  </div>
+  <div formArrayName="phoneNumbers" class="form-group">
+    <div *ngFor="let address of phoneNumbers.controls; let i=index" [formGroupName]="i" >
+      <label class="center-block">Phone number ({{i}}):
+        <input
+          class="form-control"
+          [ngClass]="{ 'alert': isValidPhoneNumber(i), 'alert-danger': isValidPhoneNumber(i) }"
+          [formControl]="address"
+        >
+      </label>
+    </div>
+    <div class="pull-right">
+      <button class="btn btn-default" type="button" (click)="addPhoneNumber()">Add</button>
+      <button *ngIf="phoneNumbers.length > 1" class="btn btn-default" type="button" (click)="removePhoneNumber()">Remove</button>
+    </div>
+  </div>
+  <div></div>
+  <div style="clear: both">
+    <button
+      class="btn btn-success"
+      [disabled]="form.invalid"
+    >
+      NEXT
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      [disabled]="form.pristine"
+      (click)="resetForm()"
+    >
+      RESET
+    </button>
+  </div>
+</form>
