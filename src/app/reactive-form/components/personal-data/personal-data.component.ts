@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractCont
 import { phoneValidator } from '../../../customValidators/phoneValidator';
 import { StepInterface } from '../../interfaces/StepInterface';
 import { UserService } from '../../services/UserService';
+import { UserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-personal-data',
@@ -14,18 +15,20 @@ export class PersonalDataComponent implements OnInit, StepInterface {
 
   form: FormGroup;
   @Output() onClickButton = new EventEmitter<number>();
+  user: UserModel;
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
+    this.user = this.userService.getUser();
     this.createForm();
-    this.setPhoneNumbers(['']);
+    this.setPhoneNumbers(this.user.phoneNumber);
   }
 
   createForm() {
     this.form = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      surname: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      name: new FormControl(this.user.name, [Validators.required, Validators.minLength(3)]),
+      surname: new FormControl(this.user.surname, [Validators.required, Validators.minLength(3)]),
       phoneNumbers: this.fb.array([])
     });
   }

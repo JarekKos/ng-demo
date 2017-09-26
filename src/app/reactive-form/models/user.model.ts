@@ -1,8 +1,8 @@
 export class UserModel {
   name = '';
   surname = '';
-  phoneNumber: String[] = [];
+  phoneNumber: String[] = [''];
   companyName = '';
   companyEmail = '';
-  compnayPhoneNumber: String[] = [];
+  compnayPhoneNumber: String[] = [''];
 }

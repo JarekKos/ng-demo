@@ -1,7 +1,7 @@
 import { UserModel } from '../models/user.model';
 
 export class UserService {
-  private user: UserModel = null;
+  private user: UserModel = new UserModel();
 
   getUser() {
     return this.user;

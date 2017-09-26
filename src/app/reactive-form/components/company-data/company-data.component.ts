@@ -5,6 +5,7 @@ import { phoneValidator } from '../../../customValidators/phoneValidator';
 import { StepInterface } from '../../interfaces/StepInterface';
 import { UserService } from '../../services/UserService';
 import {CompanyDataModel} from "../../models/company-data-model";
+import {UserModel} from "../../models/user.model";
 
 @Component({
   selector: 'app-company-data',
@@ -15,18 +16,20 @@ export class CompanyDataComponent implements OnInit, StepInterface {
 
   form: FormGroup;
   @Output() onClickButton = new EventEmitter<number>();
+  user: UserModel;
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
+    this.user = this.userService.getUser();
     this.createForm();
-    this.setPhoneNumbers(['']);
+    this.setPhoneNumbers(this.user.compnayPhoneNumber);
   }
 
   private createForm() {
     this.form = this.fb.group({
-      companyName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      companyEmail: new FormControl('', [Validators.required, Validators.email]),
+      companyName: new FormControl(this.user.companyName, [Validators.required, Validators.minLength(3)]),
+      companyEmail: new FormControl(this.user.companyEmail, [Validators.required, Validators.email]),
       phoneNumbers: this.fb.array([])
     });
   }
