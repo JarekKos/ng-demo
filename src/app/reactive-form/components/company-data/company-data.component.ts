@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators, FormArray, AbstractControl} from '@angular/forms';
 
-import { phoneValidator } from '../../customValidators/phoneValidator';
-import { StepInterface } from '../interfaces/StepInterface';
-import { UserService } from '../services/UserService';
-import {CompanyDataModel} from "../models/company-data-model";
+import { phoneValidator } from '../../../customValidators/phoneValidator';
+import { StepInterface } from '../../interfaces/StepInterface';
+import { UserService } from '../../services/UserService';
+import {CompanyDataModel} from "../../models/company-data-model";
 
 @Component({
   selector: 'app-company-data',

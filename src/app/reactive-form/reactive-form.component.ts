@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 
 import { StepDirective } from '../step.directive';
-import { PersonalDataComponent } from './personal-data/personal-data.component';
-import { CompanyDataComponent } from './company-data/company-data.component';
+import { PersonalDataComponent } from './components/personal-data/personal-data.component';
+import { CompanyDataComponent } from './components/company-data/company-data.component';
 import { UserService } from './services/UserService';
 
 @Component({

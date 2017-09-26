@@ -1,9 +1,9 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl} from '@angular/forms';
 
-import { phoneValidator } from '../../customValidators/phoneValidator';
-import { StepInterface } from '../interfaces/StepInterface';
-import { UserService } from '../services/UserService';
+import { phoneValidator } from '../../../customValidators/phoneValidator';
+import { StepInterface } from '../../interfaces/StepInterface';
+import { UserService } from '../../services/UserService';
 
 @Component({
   selector: 'app-personal-data',
