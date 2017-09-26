@@ -4,5 +4,5 @@ export class UserModel {
   phoneNumber: String[] = [''];
   companyName = '';
   companyEmail = '';
-  compnayPhoneNumber: String[] = [''];
+  companyPhoneNumber: String[] = [''];
 }
