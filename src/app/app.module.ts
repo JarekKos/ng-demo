@@ -13,6 +13,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { PersonalDataComponent } from './reactive-form/components/personal-data/personal-data.component';
 import { CompanyDataComponent } from './reactive-form/components/company-data/company-data.component';
 import { StepDirective } from './step.directive';
+import { SummaryComponent } from './reactive-form/components/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { StepDirective } from './step.directive';
     ReactiveFormComponent,
     PersonalDataComponent,
     StepDirective,
-    CompanyDataComponent
+    CompanyDataComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-demo-pre'}),
@@ -32,6 +34,6 @@ import { StepDirective } from './step.directive';
   ],
   providers: [TodoService],
   bootstrap: [AppComponent],
-  entryComponents: [PersonalDataComponent, CompanyDataComponent],
+  entryComponents: [PersonalDataComponent, CompanyDataComponent, SummaryComponent],
 })
 export class AppModule { }
