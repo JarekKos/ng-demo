@@ -4,8 +4,7 @@ import {FormBuilder, FormGroup, FormControl, Validators, FormArray, AbstractCont
 import { phoneValidator } from '../../../customValidators/phoneValidator';
 import { StepInterface } from '../../interfaces/StepInterface';
 import { UserService } from '../../services/UserService';
-import {CompanyDataModel} from "../../models/company-data-model";
-import {UserModel} from "../../models/user.model";
+import { UserModel } from '../../models/user.model';
 
 @Component({
   selector: 'app-company-data',
@@ -23,7 +22,7 @@ export class CompanyDataComponent implements OnInit, StepInterface {
   ngOnInit() {
     this.user = this.userService.getUser();
     this.createForm();
-    this.setPhoneNumbers(this.user.compnayPhoneNumber);
+    this.setPhoneNumbers(this.user.companyPhoneNumber);
   }
 
   private createForm() {
@@ -65,7 +64,15 @@ export class CompanyDataComponent implements OnInit, StepInterface {
     this.phoneNumbers.removeAt(this.phoneNumbers.length - 1);
   }
 
-  onNext() {}
+  onNext() {
+    this.userService.updateUser({
+      companyName: this.companyName.value,
+      companyEmail: this.companyEmail.value,
+      companyPhoneNumber: this.phoneNumbers.value,
+    });
+
+    this.onClickButton.next(2);
+  }
 
   resetForm() {
     this.form.reset();
