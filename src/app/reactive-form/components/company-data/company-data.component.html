@@ -18,8 +18,8 @@
       >
     </label>
   </div>
-  <div formArrayName="phoneNumbers" class="form-group">
-    <div *ngFor="let address of phoneNumbers.controls; let i=index" [formGroupName]="i" >
+  <div formArrayName="companyPhoneNumbers" class="form-group">
+    <div *ngFor="let address of companyPhoneNumbers.controls; let i=index" [formGroupName]="i" >
       <label class="center-block">Phone number ({{i}}):
         <input
           class="form-control"
@@ -30,7 +30,7 @@
     </div>
     <div class="pull-right">
       <button class="btn btn-default" type="button" (click)="addPhoneNumber()">Add</button>
-      <button *ngIf="phoneNumbers.length > 1" class="btn btn-default" type="button" (click)="removePhoneNumber()">Remove</button>
+      <button *ngIf="companyPhoneNumbers.length > 1" class="btn btn-default" type="button" (click)="removePhoneNumber()">Remove</button>
     </div>
   </div>
   <div></div>

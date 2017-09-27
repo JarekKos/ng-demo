@@ -22,7 +22,7 @@ export class PersonalDataComponent implements OnInit, StepInterface {
   ngOnInit() {
     this.user = this.userService.getUser();
     this.createForm();
-    this.setPhoneNumbers(this.user.phoneNumber);
+    this.setPhoneNumbers(this.user.phoneNumbers);
   }
 
   createForm() {
@@ -65,12 +65,6 @@ export class PersonalDataComponent implements OnInit, StepInterface {
   }
 
   onNext() {
-    this.userService.updateUser({
-      name: this.name.value,
-      surname: this.surname.value,
-      phoneNumber: this.phoneNumbers.value,
-    });
-
     this.onClickButton.next(1);
   }
 

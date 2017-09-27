@@ -1,3 +1,46 @@
-<p>
-  summary works!
-</p>
+<div class="page-header">
+  <h1>Summary</h1>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+    Name:
+  </div>
+  <div class="col-xs-8">
+    {{user.name}}
+  </div>
+
+  <div class="col-xs-4">
+    Surname:
+  </div>
+  <div class="col-xs-8">
+    {{user.surname}}
+  </div>
+
+  <div class="col-xs-4">
+    Personal phone number(s):
+  </div>
+  <div class="col-xs-8">
+    <span *ngFor="let phoneNumber of user.phoneNumbers">{{ phoneNumber }}, </span>
+  </div>
+
+  <div class="col-xs-4">
+    Company:
+  </div>
+  <div class="col-xs-8">
+    {{user.companyName}}
+  </div>
+
+  <div class="col-xs-4">
+    Email address:
+  </div>
+  <div class="col-xs-8">
+    {{user.companyEmail}}
+  </div>
+
+  <div class="col-xs-4">
+    Company phone number(s):
+  </div>
+  <div class="col-xs-8">
+    <span *ngFor="let phoneNumber of user.companyPhoneNumbers">{{ phoneNumber }}, </span>
+  </div>
+</div>

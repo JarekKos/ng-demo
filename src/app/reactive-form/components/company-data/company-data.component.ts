@@ -22,14 +22,14 @@ export class CompanyDataComponent implements OnInit, StepInterface {
   ngOnInit() {
     this.user = this.userService.getUser();
     this.createForm();
-    this.setPhoneNumbers(this.user.companyPhoneNumber);
+    this.setPhoneNumbers(this.user.companyPhoneNumbers);
   }
 
   private createForm() {
     this.form = this.fb.group({
       companyName: new FormControl(this.user.companyName, [Validators.required, Validators.minLength(3)]),
       companyEmail: new FormControl(this.user.companyEmail, [Validators.required, Validators.email]),
-      phoneNumbers: this.fb.array([])
+      companyPhoneNumbers: this.fb.array([])
     });
   }
 
@@ -45,11 +45,11 @@ export class CompanyDataComponent implements OnInit, StepInterface {
     );
     const phoneNumberFormArray = this.fb.array(phoneNumbersFCs);
 
-    this.form.setControl('phoneNumbers', phoneNumberFormArray);
+    this.form.setControl('companyPhoneNumbers', phoneNumberFormArray);
   }
 
   addPhoneNumber() {
-    this.phoneNumbers.push(
+    this.companyPhoneNumbers.push(
       this.fb.control(
         '',
         [
@@ -61,14 +61,14 @@ export class CompanyDataComponent implements OnInit, StepInterface {
   }
 
   removePhoneNumber() {
-    this.phoneNumbers.removeAt(this.phoneNumbers.length - 1);
+    this.companyPhoneNumbers.removeAt(this.companyPhoneNumbers.length - 1);
   }
 
   onNext() {
     this.userService.updateUser({
       companyName: this.companyName.value,
       companyEmail: this.companyEmail.value,
-      companyPhoneNumber: this.phoneNumbers.value,
+      companyPhoneNumber: this.companyPhoneNumbers.value,
     });
 
     this.onClickButton.next(2);
@@ -79,8 +79,8 @@ export class CompanyDataComponent implements OnInit, StepInterface {
   }
 
   isValidPhoneNumber(index) {
-    return this.phoneNumbers.controls[index].touched
-      && this.phoneNumbers.controls[index].invalid;
+    return this.companyPhoneNumbers.controls[index].touched
+      && this.companyPhoneNumbers.controls[index].invalid;
   }
 
   get companyName(): AbstractControl {
@@ -91,8 +91,8 @@ export class CompanyDataComponent implements OnInit, StepInterface {
     return this.form.get('companyEmail');
   }
 
-  get phoneNumbers(): FormArray {
-    return this.form.get('phoneNumbers') as FormArray;
+  get companyPhoneNumbers(): FormArray {
+    return this.form.get('companyPhoneNumbers') as FormArray;
   }
 
 }

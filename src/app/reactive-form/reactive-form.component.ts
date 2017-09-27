@@ -49,7 +49,6 @@ export class ReactiveFormComponent implements OnInit, AfterViewInit {
   setActive(index: number) {
     if (this.cmp && this.cmp['form'] && this.cmp['form'].valid) {
       this.userService.updateUser(this.cmp['form'].value);
-      console.log(this.userService.getUser());
     }
 
     if (this.cmp === null || this.activeTab.step > this.steps[index].step || this.cmp['form'].valid) {
