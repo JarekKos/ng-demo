@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 
 import { AppRoutingModule } from './app-routing.module';
+import { ShopListModule } from './shop-list/shop-list.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -28,9 +29,10 @@ import { SummaryComponent } from './reactive-form/components/summary/summary.com
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-demo-pre'}),
-    AppRoutingModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShopListModule,
+    AppRoutingModule,
   ],
   providers: [TodoService],
   bootstrap: [AppComponent],
