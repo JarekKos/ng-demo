@@ -1,9 +1,8 @@
-<div class="container">
-  <ul class="nav nav-tabs">
-    <li *ngFor="let step of steps; let i = index;" [ngClass]="{active: isActive(i)}" role="presentation">
-      <a (click)="setActive(i)">{{step.label}}</a>
-    </li>
-  </ul>
-  <ng-template appStepHost></ng-template>
-</div>
+<ul class="nav nav-tabs">
+  <li *ngFor="let step of steps; let i = index;" [ngClass]="{active: isActive(i)}" role="presentation">
+    <a (click)="setActive(i)">{{step.label}}</a>
+  </li>
+</ul>
+<ng-template appStepHost></ng-template>
+
 
