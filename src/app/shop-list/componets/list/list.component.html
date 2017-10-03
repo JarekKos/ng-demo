@@ -1,3 +1,12 @@
-<ul>
-  <li *ngFor="let item of items$ | async">{{item}}</li>
-</ul>
+<div class="col-xs-6">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of items$ | async">
+      <span class="badge" role="button" [routerLink]="'edit/' + item.id">Edit</span>
+      {{item.name}}
+    </li>
+  </ul>
+</div>
+<div class="col-xs-6">
+  <router-outlet></router-outlet>
+</div>
+

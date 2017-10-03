@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  items$: Observable<String[]>
+  items$: Observable<Array<{id, name}>>;
 
   constructor(private shopList: ShopList) { }
 

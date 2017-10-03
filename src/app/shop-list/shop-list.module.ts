@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ShopListRoutingModule } from './shop-list-routing.module';
 import { ListComponent } from './componets/list/list.component';
+import { EditComponent } from './componets/edit/edit.component';
 import { ShopList } from './services/shopList';
 
 
@@ -12,7 +13,7 @@ import { ShopList } from './services/shopList';
     CommonModule,
     ShopListRoutingModule,
   ],
-  declarations: [ListComponent],
+  declarations: [ListComponent, EditComponent],
   providers: [ShopList]
 })
 export class ShopListModule { }
