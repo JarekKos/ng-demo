@@ -1,3 +1,22 @@
-<div>
-  {{item$[0].name}}
-</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <label class="center-block">Value:
+    <input
+      class="form-control"
+      formControlName="itemName"
+    >
+  </label>
+  <div>
+    <button
+      class="btn btn-success"
+      [disabled]="form.invalid"
+    >
+      UPDATE
+    </button>
+    <button
+      (click)="cancel()"
+      class="btn btn-danger"
+    >
+      CANCEL
+    </button>
+  </div>
+</form>

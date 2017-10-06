@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ShopListRoutingModule } from './shop-list-routing.module';
 import { ListComponent } from './componets/list/list.component';
@@ -12,6 +13,7 @@ import { ShopList } from './services/shopList';
   imports: [
     CommonModule,
     ShopListRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [ListComponent, EditComponent],
   providers: [ShopList]

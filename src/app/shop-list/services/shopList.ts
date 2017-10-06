@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-// import 'rxjs/add/observable/filter';
 
 @Injectable()
 export class ShopList {
+  @Output() onListUpdate: EventEmitter<string> = new EventEmitter();
   list = [
     {id: 1, name: 'cheese'},
     {id: 2, name: 'egs'},
@@ -15,5 +15,17 @@ export class ShopList {
 
   getList() {
     return Observable.of(this.list);
+  }
+
+  updateItem(id, value) {
+    const newList = this.list.map(item => {
+      if (item.id === id) {
+        item.name = value;
+      }
+      return item;
+    });
+
+    this.list = newList;
+    this.onListUpdate.emit();
   }
 }

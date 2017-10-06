@@ -14,6 +14,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.items$ = this.shopList.getList();
-  }
 
+    this.shopList.onListUpdate.subscribe(() => {
+      this.items$ = this.shopList.getList();
+    });
+  }
 }
