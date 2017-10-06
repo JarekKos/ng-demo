@@ -9,4 +9,8 @@
 <div class="col-xs-6">
   <router-outlet></router-outlet>
 </div>
+<div class="col-xs-12">
+  <a [routerLink]="['./', { outlets: { popup: ['compose'] } }]">Show popup</a>
+  <router-outlet name="popup"></router-outlet>
+</div>
 
