@@ -15,6 +15,7 @@ import { PersonalDataComponent } from './reactive-form/components/personal-data/
 import { CompanyDataComponent } from './reactive-form/components/company-data/company-data.component';
 import { StepDirective } from './step.directive';
 import { SummaryComponent } from './reactive-form/components/summary/summary.component';
+import {UserService} from './shop-list/services/userService';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { SummaryComponent } from './reactive-form/components/summary/summary.com
     ShopListModule,
     AppRoutingModule,
   ],
-  providers: [TodoService],
+  providers: [TodoService, UserService],
   bootstrap: [AppComponent],
   entryComponents: [PersonalDataComponent, CompanyDataComponent, SummaryComponent],
 })
