@@ -40,7 +40,12 @@ export class EditComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/shop-list']);
+    this.form.patchValue({itemName: this.item.name});
+  }
+
+  canDeactivate() {
+    console.log(this.form.get('itemName'));
+    return this.item.name === this.form.get('itemName').value;
   }
 
 }

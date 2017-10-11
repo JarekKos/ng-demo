@@ -14,7 +14,8 @@ const routes: Routes = [
     children: [
       {
         path: 'edit/:id',
-        component: EditComponent
+        component: EditComponent,
+        canDeactivate: [AuthGuard]
       },
       {
         path: 'compose',
