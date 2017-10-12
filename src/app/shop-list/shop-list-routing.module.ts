@@ -5,6 +5,7 @@ import { ListComponent } from './componets/list/list.component';
 import { EditComponent } from './componets/edit/edit.component';
 import { AlertComponent } from './componets/alert/alert.component';
 import { AuthGuard } from './services/authGuard';
+import {ResolverService} from "./services/resolver.service";
 
 const routes: Routes = [
   {
@@ -15,7 +16,10 @@ const routes: Routes = [
       {
         path: 'edit/:id',
         component: EditComponent,
-        canDeactivate: [AuthGuard]
+        canDeactivate: [AuthGuard],
+        resolve: {
+          product: ResolverService
+        }
       },
       {
         path: 'compose',

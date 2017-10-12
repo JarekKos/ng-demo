@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/filter';
 
@@ -20,17 +20,13 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
     private shopList: ShopList,
     private fb: FormBuilder,
-    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.shopList.getList().subscribe(elements => {
-        this.item = elements.filter(element => element.id === +params.get('id'))[0];
-
-        this.form = this.fb.group({
-          itemName: new FormControl(this.item.name, [Validators.required])
-        });
+    this.route.data.subscribe(data => {
+      this.item = data.product;
+      this.form = this.fb.group({
+        itemName: [this.item.name, Validators.required]
       });
     });
   }

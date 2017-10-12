@@ -17,6 +17,11 @@ export class ShopList {
     return Observable.of(this.list);
   }
 
+  getItemById(id) {
+    const singleItem = this.list.filter(item => item.id === +id)[0];
+    return Observable.of(singleItem).delay(500);
+  }
+
   updateItem(id, value) {
     const newList = this.list.map(item => {
       if (item.id === id) {

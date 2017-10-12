@@ -7,6 +7,7 @@ import { EditComponent } from './componets/edit/edit.component';
 import { ShopList } from './services/shopList';
 import { AlertComponent } from './componets/alert/alert.component';
 import {AuthGuard} from './services/authGuard';
+import {ResolverService} from './services/resolver.service';
 
 
 
@@ -17,6 +18,6 @@ import {AuthGuard} from './services/authGuard';
     ReactiveFormsModule
   ],
   declarations: [ListComponent, EditComponent, AlertComponent],
-  providers: [ShopList, AuthGuard]
+  providers: [ShopList, AuthGuard, ResolverService]
 })
 export class ShopListModule { }
